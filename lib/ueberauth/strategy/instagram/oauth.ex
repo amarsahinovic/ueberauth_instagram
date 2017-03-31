@@ -46,6 +46,10 @@ defmodule Ueberauth.Strategy.Instagram.OAuth do
   end
 
   def get_token!(params \\ [], opts \\ []) do
+    params =
+      params
+      |> Keyword.put(:client_secret, client.client_secret)
+
     opts
     |> client
     |> OAuth2.Client.get_token!(params)
